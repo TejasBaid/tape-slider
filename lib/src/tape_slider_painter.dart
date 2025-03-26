@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class TapeScalePainter extends CustomPainter {
   final double min;
@@ -50,45 +49,57 @@ class TapeScalePainter extends CustomPainter {
       final isMajorTick = i % labelInterval == 0;
 
       if (isHorizontal) {
-        canvas.drawLine(
-          Offset(position, size.height / 2 - (isMajorTick ? 30 : 20)),
-          Offset(position, size.height / 2 + (isMajorTick ? 30 : 20)),
-          isMajorTick ? majorTickPaint : minorTickPaint,
-        );
-
+        _drawHorizontalTick(canvas, size, position, isMajorTick, majorTickPaint, minorTickPaint);
         if (isMajorTick && showLabels) {
-          textPainter.text = TextSpan(
-            text: i.toInt().toString(),
-            style: majorTickLabelStyle,
-          );
-
-          textPainter.layout();
-          textPainter.paint(
-            canvas,
-            Offset(position - textPainter.width / 2, size.height / 2 + 40),
-          );
+          _drawHorizontalLabel(canvas, size, position, i.toInt(), textPainter);
         }
       } else {
-        canvas.drawLine(
-          Offset(size.width / 2 - (isMajorTick ? 30 : 20), position),
-          Offset(size.width / 2 + (isMajorTick ? 30 : 20), position),
-          isMajorTick ? majorTickPaint : minorTickPaint,
-        );
-
+        _drawVerticalTick(canvas, size, position, isMajorTick, majorTickPaint, minorTickPaint);
         if (isMajorTick && showLabels) {
-          textPainter.text = TextSpan(
-            text: i.toInt().toString(),
-            style: majorTickLabelStyle,
-          );
-
-          textPainter.layout();
-          textPainter.paint(
-            canvas,
-            Offset(size.width / 2 + 40, position - textPainter.height / 2),
-          );
+          _drawVerticalLabel(canvas, size, position, i.toInt(), textPainter);
         }
       }
     }
+  }
+
+  void _drawHorizontalTick(Canvas canvas, Size size, double position, bool isMajorTick, Paint majorTickPaint, Paint minorTickPaint) {
+    canvas.drawLine(
+      Offset(position, size.height / 2 - (isMajorTick ? 30 : 20)),
+      Offset(position, size.height / 2 + (isMajorTick ? 30 : 20)),
+      isMajorTick ? majorTickPaint : minorTickPaint,
+    );
+  }
+
+  void _drawVerticalTick(Canvas canvas, Size size, double position, bool isMajorTick, Paint majorTickPaint, Paint minorTickPaint) {
+    canvas.drawLine(
+      Offset(size.width / 2 - (isMajorTick ? 30 : 20), position),
+      Offset(size.width / 2 + (isMajorTick ? 30 : 20), position),
+      isMajorTick ? majorTickPaint : minorTickPaint,
+    );
+  }
+
+  void _drawHorizontalLabel(Canvas canvas, Size size, double position, int value, TextPainter textPainter) {
+    textPainter.text = TextSpan(
+      text: value.toString(),
+      style: majorTickLabelStyle,
+    );
+    textPainter.layout();
+    textPainter.paint(
+      canvas,
+      Offset(position - textPainter.width / 2, size.height / 2 + 40),
+    );
+  }
+
+  void _drawVerticalLabel(Canvas canvas, Size size, double position, int value, TextPainter textPainter) {
+    textPainter.text = TextSpan(
+      text: value.toString(),
+      style: majorTickLabelStyle,
+    );
+    textPainter.layout();
+    textPainter.paint(
+      canvas,
+      Offset(size.width / 2 + 40, position - textPainter.height / 2),
+    );
   }
 
   @override
@@ -104,5 +115,3 @@ class TapeScalePainter extends CustomPainter {
         labelInterval != oldDelegate.labelInterval;
   }
 }
-
-

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
 import 'package:tape_slider/src/tape_slider_painter.dart';
 
 class TapeSlider extends StatefulWidget {
@@ -58,10 +57,12 @@ class _TapeSliderState extends State<TapeSlider> {
   void initState() {
     super.initState();
     currentValue = widget.initialValue;
+    _initScrollController();
+  }
 
+  void _initScrollController() {
     final initialOffset = (currentValue - widget.minValue) * widget.itemExtent;
     _scrollController = ScrollController(initialScrollOffset: initialOffset);
-
     _scrollController.addListener(_updateCurrentValue);
   }
 
@@ -94,9 +95,11 @@ class _TapeSliderState extends State<TapeSlider> {
     final isHorizontal = widget.orientation == Axis.horizontal;
     final screenSize = MediaQuery.of(context).size;
 
-    return Container(
-      width: isHorizontal ? widget.trackWidth : widget.trackHeight,
-      height: isHorizontal ? widget.trackHeight : widget.trackWidth,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: isHorizontal ? double.infinity : widget.trackHeight,
+        maxHeight: isHorizontal ? widget.trackHeight : double.infinity,
+      ),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -148,11 +151,11 @@ class _TapeSliderState extends State<TapeSlider> {
                       isHorizontal ? (widget.maxValue - widget.minValue) * widget.itemExtent : widget.trackHeight,
                       isHorizontal ? widget.trackHeight : (widget.maxValue - widget.minValue) * widget.itemExtent
                   ),
+
                 ),
               ),
             ),
           ),
-
           Container(
             width: isHorizontal ? widget.indicatorThickness : widget.slidingAreaExtent,
             height: isHorizontal ? widget.slidingAreaExtent : widget.indicatorThickness,
