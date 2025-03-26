@@ -37,12 +37,12 @@ import 'package:tape_slider/tape_slider.dart';
 
 ```dart
 TapeSlider(
-initialValue: 65.0,
-minValue: 40.0,
-maxValue: 120.0,
-onValueChanged: (value) {
-print('Selected value: $value');
-},
+    initialValue: 65.0,
+    minValue: 40.0,
+    maxValue: 120.0,
+    onValueChanged: (value) {
+      print('Selected value: $value');
+    },
 )
 ```
 
@@ -52,15 +52,15 @@ You can align the TapeSlider horizontally within a parent widget using the `Alig
 
 ```dart
 Align(
-alignment: Alignment.center,
-child: TapeSlider(
-initialValue: 65.0,
-minValue: 40.0,
-maxValue: 120.0,
-onValueChanged: (value) {
-print('Selected value: $value');
-},
-),
+    alignment: Alignment.center,
+    child: TapeSlider(
+        initialValue: 65.0,
+        minValue: 40.0,
+        maxValue: 120.0,
+        onValueChanged: (value) {
+          print('Selected value: $value');
+        },
+    ),
 )
 ```
 
@@ -68,13 +68,13 @@ print('Selected value: $value');
 
 ```dart
 TapeSlider(
-initialValue: 65.0,
-minValue: 40.0,
-maxValue: 120.0,
-orientation: Axis.vertical,
-onValueChanged: (value) {
-print('Selected value: $value');
-},
+    initialValue: 65.0,
+    minValue: 40.0,
+    maxValue: 120.0,
+    orientation: Axis.vertical,
+    onValueChanged: (value) {
+        print('Selected value: $value');
+    },
 )
 ```
 
@@ -82,18 +82,18 @@ print('Selected value: $value');
 
 ```dart
 TapeSlider(
-initialValue: 65.0,
-minValue: 40.0,
-maxValue: 120.0,
-itemExtent: 20.0,
-activeColor: Colors.blue,
-inactiveColor: Colors.grey.withOpacity(0.5),
-indicatorColor: Colors.red,
-majorTickLabelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-minorTickLabelStyle: TextStyle(fontSize: 12),
-onValueChanged: (value) {
-print('Selected value: $value');
-},
+    initialValue: 65.0,
+    minValue: 40.0,
+    maxValue: 120.0,
+    itemExtent: 20.0,
+    activeColor: Colors.blue,
+    inactiveColor: Colors.grey.withOpacity(0.5),
+    indicatorColor: Colors.red,
+    majorTickLabelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    minorTickLabelStyle: TextStyle(fontSize: 12),
+    onValueChanged: (value) {
+        print('Selected value: $value');
+    },
 )
 ```
 
