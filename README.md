@@ -16,7 +16,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  tape_slider: ^1.0.0
+  tape_slider: ^latest_version
 ```
 
 Then run:
@@ -45,6 +45,12 @@ TapeSlider(
     },
 )
 ```
+
+<img src="https://github.com/user-attachments/assets/378de637-840f-4742-bf39-5c3eb1a999f7" width="30%"/> 
+<img src="https://github.com/user-attachments/assets/2dd9efe9-a62a-43fe-aef4-7f5ef9fa8218" width="30%"/> 
+<img src="https://github.com/user-attachments/assets/4253a840-56e4-4a0c-ae2e-efb713cb26e5" width="30%"/>
+
+
 
 ### Horizontal Alignment
 
