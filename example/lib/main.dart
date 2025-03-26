@@ -35,7 +35,8 @@ class _MyAppState extends State<MyApp> {
                 style: const TextStyle(fontSize: 50, color: Colors.white, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 50),
-              Expanded(child:               TapeSlider(
+              TapeSlider(
+
                 initialValue: 50.0,
                 minValue: 0,
                 maxValue: 100,
@@ -57,8 +58,8 @@ class _MyAppState extends State<MyApp> {
                     _currentValue = value;
                   });
                 },
-              ),
               )
+
 
             ],
           ),
