@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class TapeScalePainter extends CustomPainter {
   final double min;
@@ -91,5 +92,17 @@ class TapeScalePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(TapeScalePainter oldDelegate) {
+    return min != oldDelegate.min ||
+        max != oldDelegate.max ||
+        itemExtent != oldDelegate.itemExtent ||
+        orientation != oldDelegate.orientation ||
+        activeColor != oldDelegate.activeColor ||
+        inactiveColor != oldDelegate.inactiveColor ||
+        showLabels != oldDelegate.showLabels ||
+        tickInterval != oldDelegate.tickInterval ||
+        labelInterval != oldDelegate.labelInterval;
+  }
 }
+
+

@@ -52,6 +52,7 @@ class TapeSlider extends StatefulWidget {
 class _TapeSliderState extends State<TapeSlider> {
   late double currentValue;
   late ScrollController _scrollController;
+  bool _isAnimating = false;
 
   @override
   void initState() {
@@ -87,6 +88,7 @@ class _TapeSliderState extends State<TapeSlider> {
     _scrollController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final isHorizontal = widget.orientation == Axis.horizontal;
@@ -100,13 +102,16 @@ class _TapeSliderState extends State<TapeSlider> {
         children: [
           NotificationListener<ScrollNotification>(
             onNotification: (notification) {
-              if (notification is ScrollEndNotification) {
+              if (notification is ScrollEndNotification && !_isAnimating) {
+                _isAnimating = true;
                 final targetOffset = ((currentValue - widget.minValue) * widget.itemExtent);
                 _scrollController.animateTo(
                   targetOffset,
                   duration: const Duration(milliseconds: 200),
                   curve: Curves.easeOut,
-                );
+                ).then((_) {
+                  _isAnimating = false;
+                });
               }
               return true;
             },
@@ -161,5 +166,3 @@ class _TapeSliderState extends State<TapeSlider> {
     );
   }
 }
-
-

@@ -1,40 +1,130 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# TapeSlider
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+TapeSlider is a customizable Flutter widget that provides a tape measure-like slider for selecting numeric values. It's ideal for applications that require intuitive input for measurements like weight, height, or other numeric ranges.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Horizontal and vertical orientations
+- Customizable appearance (colors, sizes, fonts)
+- Configurable value range and intervals
+- Smooth scrolling with snap-to-nearest-value functionality
+- Efficient rendering using CustomPainter
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add this to your package's `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  tape_slider: ^1.0.0
+```
+
+Then run:
+
+```
+$ flutter pub get
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Import the package in your Dart code:
 
 ```dart
-const like = 'sample';
+import 'package:tape_slider/tape_slider.dart';
 ```
 
-## Additional information
+### Basic Usage
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
-# tape-slider
+```dart
+TapeSlider(
+initialValue: 65.0,
+minValue: 40.0,
+maxValue: 120.0,
+onValueChanged: (value) {
+print('Selected value: $value');
+},
+)
+```
+
+### Horizontal Alignment
+
+You can align the TapeSlider horizontally within a parent widget using the `Align` widget:
+
+```dart
+Align(
+alignment: Alignment.center,
+child: TapeSlider(
+initialValue: 65.0,
+minValue: 40.0,
+maxValue: 120.0,
+onValueChanged: (value) {
+print('Selected value: $value');
+},
+),
+)
+```
+
+### Vertical Orientation
+
+```dart
+TapeSlider(
+initialValue: 65.0,
+minValue: 40.0,
+maxValue: 120.0,
+orientation: Axis.vertical,
+onValueChanged: (value) {
+print('Selected value: $value');
+},
+)
+```
+
+### Customized Appearance
+
+```dart
+TapeSlider(
+initialValue: 65.0,
+minValue: 40.0,
+maxValue: 120.0,
+itemExtent: 20.0,
+activeColor: Colors.blue,
+inactiveColor: Colors.grey.withOpacity(0.5),
+indicatorColor: Colors.red,
+majorTickLabelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+minorTickLabelStyle: TextStyle(fontSize: 12),
+onValueChanged: (value) {
+print('Selected value: $value');
+},
+)
+```
+
+## Parameters
+
+| Parameter | Data Type | Usage |
+|-----------|-----------|-------|
+| initialValue | double | The starting value of the slider |
+| minValue | double | The minimum value on the scale |
+| maxValue | double | The maximum value on the scale |
+| onValueChanged | Function(double) | Callback function when the value changes |
+| orientation | Axis | Determines if the slider is horizontal or vertical |
+| itemExtent | double | Width/height of each unit on the scale |
+| activeColor | Color | Color of the active (selected) part of the scale |
+| inactiveColor | Color | Color of the inactive part of the scale |
+| trackHeight | double | Height of the slider track |
+| trackWidth | double | Width of the slider track |
+| majorTickLabelStyle | TextStyle | Style for major tick labels |
+| minorTickLabelStyle | TextStyle | Style for minor tick labels |
+| showLabels | bool | Whether to display labels on the scale |
+| indicatorThickness | double | Thickness of the indicator line |
+| indicatorColor | Color | Color of the indicator line |
+| tickInterval | int | Interval between each tick on the scale |
+| labelInterval | int | Interval between each labeled tick |
+| slidingAreaExtent | double | Size of the sliding area |
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
