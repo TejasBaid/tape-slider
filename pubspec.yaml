@@ -1,7 +1,8 @@
 name: tape_slider
-description: "A new Flutter package project."
+description: "TapeSlider is a customizable Flutter package that provides a tape measure-like slider for selecting numeric values. It's ideal for applications that require intuitive input for measurements like weight, height, or other numeric ranges."
 version: 0.0.1
-homepage:
+
+homepage: https://github.com/TejasBaid/tape-slider
 
 environment:
   sdk: ^3.7.0
